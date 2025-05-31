@@ -101,6 +101,22 @@
     #toc ul li a:hover {
       text-decoration: underline;
     }
+    .track-section {
+      padding: 2rem;
+    }
+    .track {
+      margin-bottom: 1rem;
+    }
+    .track-title {
+      font-weight: bold;
+    }
+    .track-artist {
+      font-style: italic;
+    }
+    .track-links a {
+      color: #1db954;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -127,6 +143,57 @@
   <button onclick="submitSuggestion()">Submit</button>
   <button onclick="document.getElementById('suggestModal').style.display='none'">Cancel</button>
 </div>
+
+<!-- genre sections would be here -->
+<div id="genre-metal" class="track-section">
+  <h2>Metal</h2>
+  <div class="track">
+    <div class="track-title">Flesh & Metal</div>
+    <div class="track-artist">Mick Gordon</div>
+    <div class="track-links">
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="https://spotify.com" target="_blank">Spotify</a>
+    </div>
+  </div>
+</div>
+<div id="genre-electronic" class="track-section">
+  <h2>Electronic</h2>
+  <div class="track">
+    <div class="track-title">Dreamin' On</div>
+    <div class="track-artist">MJ</div>
+    <div class="track-links">
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+    </div>
+  </div>
+</div>
+<div id="genre-rock" class="track-section">
+  <h2>Rock</h2>
+  <div class="track">
+    <div class="track-title">Knights of Cydonia</div>
+    <div class="track-artist">Muse</div>
+    <div class="track-links">
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+    </div>
+  </div>
+</div>
+<div id="genre-chill" class="track-section">
+  <h2>Chill</h2>
+  <div class="track">
+    <div class="track-title">Midnight City</div>
+    <div class="track-artist">M83</div>
+    <div class="track-links">
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+    </div>
+  </div>
+</div>
+<div id="genre-user" class="track-section">
+  <h2>User Recommendation!</h2>
+  <p>No user-submitted tracks yet.</p>
+</div>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const toggleBtn = document.getElementById("toggleSidebar");
@@ -160,13 +227,5 @@
     document.getElementById('suggestModal').style.display = 'none';
   }
 </script>
-<!-- genre sections would be here -->
-<div id="genre-metal"></div>
-<div id="genre-electronic"></div>
-<div id="genre-rock"></div>
-<div id="genre-chill"></div>
-<div id="genre-user"></div>
 </body>
 </html>
-
-
