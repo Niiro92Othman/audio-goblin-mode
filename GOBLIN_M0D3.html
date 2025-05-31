@@ -94,19 +94,25 @@
       cursor: pointer;
       margin-right: 10px;
     }
+    #toc ul li a {
+      color: #0af;
+      text-decoration: none;
+    }
+    #toc ul li a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 <div id="toggleSidebar">☰ TOC</div>
 <div id="toc" class="hidden">
-  <!-- Sidebar content placeholder -->
   <p><strong>Genres</strong></p>
   <ul>
-    <li>Metal</li>
-    <li>Electronic</li>
-    <li>Rock</li>
-    <li>Chill</li>
-    <li>User Recommendation!</li>
+    <li><a href="#genre-metal">Metal</a></li>
+    <li><a href="#genre-electronic">Electronic</a></li>
+    <li><a href="#genre-rock">Rock</a></li>
+    <li><a href="#genre-chill">Chill</a></li>
+    <li><a href="#genre-user">User Recommendation!</a></li>
   </ul>
 </div>
 <div id="visitorCounter">Visitors: <span id="visitorCount">...</span></div>
@@ -154,7 +160,13 @@
     document.getElementById('suggestModal').style.display = 'none';
   }
 </script>
-<!-- existing body content goes here -->
+<!-- genre sections would be here -->
+<div id="genre-metal"></div>
+<div id="genre-electronic"></div>
+<div id="genre-rock"></div>
+<div id="genre-chill"></div>
+<div id="genre-user"></div>
 </body>
 </html>
+
 
