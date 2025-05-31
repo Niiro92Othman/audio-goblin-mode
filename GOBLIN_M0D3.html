@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +24,24 @@
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
+    #toc {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px;
+      z-index: 998;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
     #toc.hidden {
       display: none;
     }
     #visitorCounter {
       position: fixed;
-      top: 10px;
-      left: 60px;
+      bottom: 10px;
+      left: 10px;
       z-index: 999;
       background-color: #333;
       color: #fff;
@@ -64,6 +74,8 @@
       border-radius: 10px;
       color: white;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 400px;
     }
     #suggestModal input {
       display: block;
@@ -80,11 +92,23 @@
       background: #1db954;
       color: white;
       cursor: pointer;
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
 <div id="toggleSidebar">☰ TOC</div>
+<div id="toc" class="hidden">
+  <!-- Sidebar content placeholder -->
+  <p><strong>Genres</strong></p>
+  <ul>
+    <li>Metal</li>
+    <li>Electronic</li>
+    <li>Rock</li>
+    <li>Chill</li>
+    <li>User Recommendation!</li>
+  </ul>
+</div>
 <div id="visitorCounter">Visitors: <span id="visitorCount">...</span></div>
 <div id="suggestBtn">➕ Suggest Track</div>
 <div id="suggestModal">
@@ -92,7 +116,8 @@
   <input type="text" id="suggestTitle" placeholder="Track Title">
   <input type="text" id="suggestArtist" placeholder="Artist Name">
   <input type="text" id="suggestGenre" placeholder="Genre">
-  <input type="text" id="suggestLinks" placeholder="Spotify/Youtube Links">
+  <input type="text" id="suggestSpotify" placeholder="Spotify Link">
+  <input type="text" id="suggestYouTube" placeholder="YouTube Link">
   <button onclick="submitSuggestion()">Submit</button>
   <button onclick="document.getElementById('suggestModal').style.display='none'">Cancel</button>
 </div>
@@ -101,7 +126,7 @@
     const toggleBtn = document.getElementById("toggleSidebar");
     const sidebar = document.getElementById("toc");
     toggleBtn.addEventListener("click", function () {
-      sidebar.classList.toggle("hidden");
+      if (sidebar) sidebar.classList.toggle("hidden");
     });
 
     document.getElementById("suggestBtn").addEventListener("click", function () {
@@ -132,3 +157,4 @@
 <!-- existing body content goes here -->
 </body>
 </html>
+
