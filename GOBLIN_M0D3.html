@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOBLIN_M0D3</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #111;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+    }
+    #toggleSidebar {
+      position: fixed;
+      top: 20px;
+      left: 0;
+      z-index: 999;
+      background-color: #222;
+      color: #fff;
+      padding: 8px 10px;
+      cursor: pointer;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    #toc.hidden {
+      display: none;
+    }
+    #visitorCounter {
+      position: fixed;
+      top: 10px;
+      left: 60px;
+      z-index: 999;
+      background-color: #333;
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+    }
+    #suggestBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background-color: #1db954;
+      color: white;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #suggestModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    #suggestModal input {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+    }
+    #suggestModal button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      background: #1db954;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="toggleSidebar">☰ TOC</div>
+<div id="visitorCounter">Visitors: <span id="visitorCount">...</span></div>
+<div id="suggestBtn">➕ Suggest Track</div>
+<div id="suggestModal">
+  <h3>Suggest a Track</h3>
+  <input type="text" id="suggestTitle" placeholder="Track Title">
+  <input type="text" id="suggestArtist" placeholder="Artist Name">
+  <input type="text" id="suggestGenre" placeholder="Genre">
+  <input type="text" id="suggestLinks" placeholder="Spotify/Youtube Links">
+  <button onclick="submitSuggestion()">Submit</button>
+  <button onclick="document.getElementById('suggestModal').style.display='none'">Cancel</button>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("toggleSidebar");
+    const sidebar = document.getElementById("toc");
+    toggleBtn.addEventListener("click", function () {
+      sidebar.classList.toggle("hidden");
+    });
+
+    document.getElementById("suggestBtn").addEventListener("click", function () {
+      document.getElementById("suggestModal").style.display = "block";
+    });
+
+    let visitorId = localStorage.getItem("visitorId");
+    if (!visitorId) {
+      visitorId = Date.now() + Math.random().toString(36).substr(2);
+      localStorage.setItem("visitorId", visitorId);
+    }
+    fetch("https://api.countapi.xyz/hit/goblinmod3/" + visitorId)
+      .then(response => response.json())
+      .then(data => {
+        fetch("https://api.countapi.xyz/get/goblinmod3/all")
+          .then(r => r.json())
+          .then(count => {
+            document.getElementById("visitorCount").textContent = count.value;
+          });
+      });
+  });
+
+  function submitSuggestion() {
+    alert("Thanks for your suggestion! The goblin overlord will review it.");
+    document.getElementById('suggestModal').style.display = 'none';
+  }
+</script>
+<!-- existing body content goes here -->
+</body>
+</html>
